@@ -1,0 +1,15 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+     def get_next(n):
+        nextnum = 0
+        while n:
+            nextnum += (n % 10) ** 2
+            n //= 10
+        return nextnum
+
+     slow, fast = n, get_next(n)
+     while fast != 1 and slow != fast:
+        slow = get_next(slow)
+        fast = get_next(get_next(fast))
+     return fast == 1
+        
